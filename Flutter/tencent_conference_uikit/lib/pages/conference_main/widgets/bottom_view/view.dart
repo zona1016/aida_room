@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tencent_conference_uikit/common/index.dart';
+import 'package:tencent_conference_uikit/common/room_base_color.dart';
 
 import 'index.dart';
 import 'widgets/widgets.dart';
@@ -20,7 +21,7 @@ class BottomViewWidget extends GetView<BottomViewController> {
               ? 86.0.scale375()
               : 68.0.scale375(),
           width: Get.width,
-          child: Container(color: RoomColors.darkBlack),
+          child: Container(color: Colors.transparent),
         ),
         Center(
           child: Column(
@@ -31,7 +32,7 @@ class BottomViewWidget extends GetView<BottomViewController> {
                   decoration: BoxDecoration(
                     color: controller.isUnfold.value
                         ? RoomColors.lightGrey
-                        : RoomColors.darkBlack,
+                        : Colors.transparent,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   width: controller.isUnfold.value
@@ -61,7 +62,7 @@ class BottomViewWidget extends GetView<BottomViewController> {
       init: BottomViewController(),
       id: "bottom_view",
       builder: (_) {
-        return _buildView();
+        return Container(color: RoomBaseColor.whiteWithOpacity01, child: _buildView(),);
       },
       autoRemove: false,
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:tencent_conference_uikit/common/index.dart';
+import 'package:tencent_conference_uikit/common/room_base_color.dart';
 
 class CopyTextButton extends StatelessWidget {
   final String infoText;
@@ -19,41 +20,41 @@ class CopyTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: backgroundColor ?? RoomColors.btnGrey,
-        borderRadius: BorderRadius.circular(5.0.scale375()),
-      ),
       alignment: Alignment.center,
-      width: 62.0.scale375(),
-      height: 25.0.scale375(),
+      // width: 13.0.scale375(),
+      // height: 13.0.scale375(),
       child: GestureDetector(
         onTap: () => {copyAction(infoText, successToast)},
-        child: Row(
-          children: [
-            SizedBox(
-              width: 25.0.scale375(),
-              child: Image.asset(
-                AssetsImages.roomCopy,
-                package: 'tencent_conference_uikit',
-                color: textColor ?? RoomColors.textWhite,
-              ),
-            ),
-            SizedBox(width: 1.0.scale375()),
-            SizedBox(
-              width: 36.0.scale375(),
-              child: Text(
-                'copy'.roomTr,
-                style: textColor == null
-                    ? RoomTheme.defaultTheme.textTheme.bodyMedium
-                    : TextStyle(color: textColor, fontSize: 12),
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 1,
-              ),
-            ),
-          ],
-        ),
+        child:  const Icon(Icons.copy_rounded, color: RoomBaseColor.primaryColor, size: 20,),
       ),
+    );
+  }
+
+  _buildRow() {
+    return Row(
+      children: [
+        SizedBox(
+          width: 25.0.scale375(),
+          child: Image.asset(
+            AssetsImages.roomCopy,
+            package: 'tencent_conference_uikit',
+            color: textColor ?? RoomColors.textWhite,
+          ),
+        ),
+        SizedBox(width: 1.0.scale375()),
+        SizedBox(
+          width: 36.0.scale375(),
+          child: Text(
+            'copy'.roomTr,
+            style: textColor == null
+                ? RoomTheme.defaultTheme.textTheme.bodyMedium
+                : TextStyle(color: textColor, fontSize: 12),
+            textAlign: TextAlign.center,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+          ),
+        ),
+      ],
     );
   }
 

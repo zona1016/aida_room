@@ -7,7 +7,9 @@ import 'widgets.dart';
 
 class MeetingTitleWidget extends GetView<TopViewController> {
   final Orientation orientation;
-  const MeetingTitleWidget(this.orientation, {super.key});
+  final String? pwd;
+  final String? roomLink;
+  const MeetingTitleWidget(this.orientation, {super.key, this.pwd, this.roomLink});
 
   @override
   Widget build(BuildContext context) {
@@ -72,7 +74,7 @@ class MeetingTitleWidget extends GetView<TopViewController> {
         ),
         onTap: () {
           controller.conferenceMainController.resetHideTimer();
-          showConferenceBottomSheet(const RoomInfoSheet());
+          showConferenceBottomSheet(RoomInfoSheet(pwd: pwd, roomLink: roomLink,));
         },
       ),
       SizedBox(

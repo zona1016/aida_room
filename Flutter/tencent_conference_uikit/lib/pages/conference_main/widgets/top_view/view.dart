@@ -6,9 +6,13 @@ import 'package:tencent_conference_uikit/pages/conference_main/widgets/widgets.d
 import 'widgets/widgets.dart';
 
 class TopViewWidget extends GetView<TopViewController> {
-  const TopViewWidget(this.orientation, {Key? key}) : super(key: key);
+  const TopViewWidget(this.orientation, {Key? key, this.pwd, this.roomLink, this.endTime}) : super(key: key);
 
   final Orientation orientation;
+  final String? pwd;
+  final String? roomLink;
+  /// 结束时间
+  final String? endTime;
 
   Widget _buildView() {
     return Container(
@@ -16,15 +20,7 @@ class TopViewWidget extends GetView<TopViewController> {
       height: orientation == Orientation.portrait
           ? 105.0.scale375()
           : 73.0.scale375(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(
-            AssetsImages.roomTopBackGround,
-            package: 'tencent_conference_uikit',
-          ),
-          fit: BoxFit.cover,
-        ),
-      ),
+      color: Colors.transparent,
       child: Column(
         children: [
           SizedBox(
@@ -67,7 +63,7 @@ class TopViewWidget extends GetView<TopViewController> {
                     : SizedBox(width: 20.0.scale375()),
                 SizedBox(width: 16.0.scale375()),
                 const Spacer(),
-                MeetingTitleWidget(orientation),
+                MeetingTitleWidget(orientation, pwd: pwd, roomLink: roomLink,),
                 const Spacer(),
                 TopButtonItemWidget(
                   image: Image.asset(
@@ -95,11 +91,11 @@ class TopViewWidget extends GetView<TopViewController> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<TopViewController>(
-      init: TopViewController(),
+      init: TopViewController(endTime: endTime),
       id: "topview",
       builder: (_) {
         return Container(
-          color: RoomColors.darkBlack,
+          color: Colors.white.withValues(alpha: 0.1),
           child: _buildView(),
         );
       },

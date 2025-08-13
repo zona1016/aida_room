@@ -38,18 +38,6 @@ class BottomButtonsWidget extends GetView<BottomViewController> {
   List<Widget> _buildBottomButtons() {
     return [
       Obx(
-        () => BottomButtonItemWidget(
-          image: Image.asset(
-            AssetsImages.roomMember,
-            package: 'tencent_conference_uikit',
-          ),
-          onPressed: () {
-            showConferenceBottomSheet(const UserListWidget());
-          },
-          text: '${'member'.roomTr}(${RoomStore.to.roomUserCount.value})',
-        ),
-      ),
-      Obx(
         () => Visibility(
           visible: controller.isMicAndCameraButtonVisible(),
           child: BottomButtonItemWidget(
@@ -161,6 +149,18 @@ class BottomButtonsWidget extends GetView<BottomViewController> {
         text: 'shareOn'.roomTr,
         selectedText: 'shareOff'.roomTr,
       ),
+      Obx(
+            () => BottomButtonItemWidget(
+          image: Image.asset(
+            AssetsImages.roomMember,
+            package: 'tencent_conference_uikit',
+          ),
+          onPressed: () {
+            showConferenceBottomSheet(const UserListWidget());
+          },
+          text: '${'member'.roomTr}(${RoomStore.to.roomUserCount.value})',
+        ),
+      ),
       Visibility(
         visible: controller.conferenceMainController.chatWidget != null,
         child: BottomButtonItemWidget(
@@ -175,16 +175,16 @@ class BottomButtonsWidget extends GetView<BottomViewController> {
           text: 'chat'.roomTr,
         ),
       ),
-      BottomButtonItemWidget(
-        image: Image.asset(
-          AssetsImages.roomInvite,
-          package: 'tencent_conference_uikit',
-        ),
-        onPressed: () {
-          showConferenceBottomSheet(const InviteSheetWidget());
-        },
-        text: 'invite'.roomTr,
-      ),
+      // BottomButtonItemWidget(
+      //   image: Image.asset(
+      //     AssetsImages.roomInvite,
+      //     package: 'tencent_conference_uikit',
+      //   ),
+      //   onPressed: () {
+      //     showConferenceBottomSheet(const InviteSheetWidget());
+      //   },
+      //   text: 'invite'.roomTr,
+      // ),
       BottomButtonItemWidget(
         image: Image.asset(
           AssetsImages.roomFloat,
@@ -221,7 +221,7 @@ class BottomButtonsWidget extends GetView<BottomViewController> {
 
   List<Widget> _buildBaseButtons() {
     var baseButtons = _buildBottomButtons()
-        .sublist(0, 5)
+        .sublist(0, 4)
         .expand((widget) => [widget, SizedBox(width: 10.0.scale375())])
         .toList();
     baseButtons.add(
@@ -240,7 +240,6 @@ class BottomButtonsWidget extends GetView<BottomViewController> {
         isSelected: controller.isUnfold,
         text: 'unfold'.roomTr,
         selectedText: 'drop'.roomTr,
-        width: 33,
       ),
     );
     return baseButtons;
@@ -248,7 +247,7 @@ class BottomButtonsWidget extends GetView<BottomViewController> {
 
   List<Widget> _buildMoreButtons() {
     return _buildBottomButtons()
-        .sublist(5)
+        .sublist(4)
         .expand((widget) => [widget, SizedBox(width: 10.0.scale375())])
         .toList();
   }

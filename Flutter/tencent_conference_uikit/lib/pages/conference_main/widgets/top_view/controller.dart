@@ -1,14 +1,23 @@
 import 'dart:async';
+import 'dart:ffi';
 
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:rtc_room_engine/rtc_room_engine.dart';
+import 'package:tencent_conference_uikit/common/extension/index.dart';
 import 'package:tencent_conference_uikit/common/store/index.dart';
+import 'package:tencent_conference_uikit/common/style/theme.dart';
+import 'package:tencent_conference_uikit/common/widgets/dialog.dart';
 import 'package:tencent_conference_uikit/manager/conference_list_manager.dart';
 import 'package:tencent_conference_uikit/manager/rtc_engine_manager.dart';
 import 'package:tencent_conference_uikit/pages/conference_main/index.dart';
 
 class TopViewController extends GetxController {
-  TopViewController();
+
+  /// 结束时间
+  final String? endTime;
+
+  TopViewController({this.endTime});
 
   final RoomEngineManager _engineManager = RoomEngineManager();
   late TUIRoomInfo roomInfo;
@@ -18,6 +27,7 @@ class TopViewController extends GetxController {
 
   Timer? topMenuTimer;
   RxString timerText = '00:00'.obs;
+  bool showAlert = false;
 
   @override
   void onInit() {
@@ -54,7 +64,38 @@ class TopViewController extends GetxController {
     topMenuTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       totalSeconds += 1;
       updateTimer(totalSeconds: totalSeconds);
+      needEdit();
     });
+  }
+
+  void needEdit() {
+    if (double.parse(endTime ?? '0').toInt() <= DateTime.now().millisecondsSinceEpoch) {
+      if (showAlert) return;
+      showAlert = true;
+      conferenceMainController.conferenceObserver?.onConferenceFinished
+          ?.call(RoomStore.to.roomInfo.roomId);
+      if (roomInfo.ownerId == TUIRoomEngine.getSelfInfo().userId) {
+        _engineManager.destroyRoom();
+      } else {
+        _engineManager.exitRoom();
+      }
+      showConferenceDialog(
+        title: '会议时间已用完，系统将自动结束。'.roomTr,
+        confirmText: 'ok'.roomTr,
+        confirmTextStyle: RoomTheme.defaultTheme.textTheme.labelMedium,
+        onConfirm: () {
+          Get.until((route) {
+            var args = route.settings.arguments;
+            if (args is Map) {
+              return route is! PopupRoute && args['from'] != 'ConferenceMainPage';
+            }
+            return route is! PopupRoute;
+          });
+          Get.back();
+        },
+        barrierDismissible: false,
+      );
+    }
   }
 
   void updateTimer({required int totalSeconds}) {

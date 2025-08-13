@@ -16,7 +16,7 @@ class VideoPageTurningPage extends GetView<VideoPageTurningController> {
       children: [
         SizedBox(
           height: orientation == Orientation.portrait
-              ? 665.0.scale375Height()
+              ? 620.0.scale375Height()
               : Get.height,
           child: Obx(
             () => PageView.builder(

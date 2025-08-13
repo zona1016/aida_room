@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tencent_conference_uikit/common/index.dart';
+import 'package:tencent_conference_uikit/common/room_base_color.dart';
 
 import '../index.dart';
 
@@ -26,7 +27,7 @@ class BottomButtonItemWidget extends GetView<BottomViewController> {
     this.isSelected,
     this.text = "",
     this.selectedText,
-    this.width = 52,
+    this.width = 60,
     this.height = 52,
     this.opacity = 1,
     this.topRightPromptWidget,
@@ -45,10 +46,11 @@ class BottomButtonItemWidget extends GetView<BottomViewController> {
       child: Opacity(
         opacity: opacity,
         child: Container(
-          decoration: BoxDecoration(
-            color: RoomColors.lightGrey,
-            borderRadius: BorderRadius.circular(10),
-          ),
+          color: Colors.transparent,
+          // decoration: BoxDecoration(
+          //   color: RoomColors.lightGrey,
+          //   borderRadius: BorderRadius.circular(10),
+          // ),
           width: width.scale375(),
           height: height.scale375(),
           child: Stack(
@@ -71,7 +73,10 @@ class BottomButtonItemWidget extends GetView<BottomViewController> {
                         () => Text(
                           isButtonSelected.value ? selectedText ?? text : text,
                           textAlign: TextAlign.center,
-                          style: RoomTheme.defaultTheme.textTheme.labelSmall,
+                          style: const TextStyle(
+                            fontSize: 12,
+                            color: RoomBaseColor.white
+                          ),
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                         ),

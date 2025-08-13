@@ -15,7 +15,7 @@ class VideoUserInfoWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(12)),
       height: 24,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Obx(
@@ -41,21 +41,6 @@ class VideoUserInfoWidget extends StatelessWidget {
           const SizedBox(
             width: 4,
           ),
-          SizedBox(
-            width: 14,
-            height: 14,
-            child: Obx(
-              () => userModel.hasAudioStream.value
-                  ? VolumeBarWidget(volume: userModel.volume)
-                  : Image.asset(
-                      AssetsImages.roomNoVolumeBg,
-                      package: 'tencent_conference_uikit',
-                    ),
-            ),
-          ),
-          const SizedBox(
-            width: 4,
-          ),
           Text(
             userModel.userName.value.isEmpty
                 ? userModel.userId.value
@@ -63,6 +48,21 @@ class VideoUserInfoWidget extends StatelessWidget {
             style: RoomTheme.defaultTheme.textTheme.bodyMedium,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
+          ),
+          const SizedBox(
+            width: 4,
+          ),
+          SizedBox(
+            width: 14,
+            height: 14,
+            child: Obx(
+                  () => userModel.hasAudioStream.value
+                  ? VolumeBarWidget(volume: userModel.volume)
+                  : Image.asset(
+                AssetsImages.roomNoVolumeBg,
+                package: 'tencent_conference_uikit',
+              ),
+            ),
           ),
           const SizedBox(
             width: 4,

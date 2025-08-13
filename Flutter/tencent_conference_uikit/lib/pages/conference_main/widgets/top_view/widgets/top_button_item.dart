@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tencent_conference_uikit/common/index.dart';
+import 'package:tencent_conference_uikit/common/room_base_color.dart';
 
 import '../index.dart';
 
@@ -39,7 +40,10 @@ class TopButtonItemWidget extends GetView<TopViewController> {
               SizedBox(width: 3.0.scale375()),
               Text(
                 text!,
-                style: RoomTheme.defaultTheme.textTheme.labelMedium,
+                style: const TextStyle(
+                  fontSize: 14,
+                  color: RoomBaseColor.secondPrimaryColor
+                ),
               ),
             ],
           ],

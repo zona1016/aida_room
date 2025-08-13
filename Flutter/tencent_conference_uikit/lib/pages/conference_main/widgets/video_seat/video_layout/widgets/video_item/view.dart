@@ -76,6 +76,7 @@ class _VideoItemState extends State<VideoItemWidget> {
                     child: Image.asset(
                       AssetsImages.roomVideoBgNoContent,
                       fit: BoxFit.fill,
+                      color: Colors.white.withValues(alpha: 0.01),
                       package: 'tencent_conference_uikit',
                     ),
                   );
@@ -93,18 +94,29 @@ class _VideoItemState extends State<VideoItemWidget> {
                       visible: !widget.isScreenStream &&
                           !widget.userModel.hasVideoStream.value,
                       child: SizedBox(
-                        width: 50,
-                        height: 50,
-                        child: ClipOval(
-                          child: Image.network(
-                            widget.userModel.userAvatarURL.value,
-                            errorBuilder: (context, error, stackTrace) {
-                              return Image.asset(
-                                AssetsImages.roomDefaultAvatar,
-                                package: 'tencent_conference_uikit',
-                              );
-                            },
-                          ),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            ClipOval(
+                              child: Image.network(
+                                widget.userModel.userAvatarURL.value,
+                                width: 50,
+                                height: 50,
+                                errorBuilder: (context, error, stackTrace) {
+                                  return Image.asset(
+                                    AssetsImages.roomDefaultAvatar,
+                                    width: 50,
+                                    height: 50,
+                                    package: 'tencent_conference_uikit',
+                                  );
+                                },
+                              ),
+                            ),
+                            const SizedBox(height: 10,),
+                            VideoUserInfoWidget(
+                              userModel: widget.userModel,
+                            )
+                          ],
                         ),
                       ),
                     ),
@@ -122,13 +134,6 @@ class _VideoItemState extends State<VideoItemWidget> {
                           color: RoomColors.fluorescentGreen, width: 3),
                     ),
                   ),
-                ),
-              ),
-              Positioned(
-                bottom: 4,
-                left: 7,
-                child: VideoUserInfoWidget(
-                  userModel: widget.userModel,
                 ),
               ),
             ],
