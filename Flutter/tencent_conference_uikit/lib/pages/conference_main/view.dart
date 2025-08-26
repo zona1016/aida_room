@@ -11,15 +11,16 @@ import 'package:tencent_float_chat_widget/tencent_float_chat_widget.dart';
 import 'index.dart';
 
 class ConferenceMainPage extends GetView<ConferenceMainController> {
-  const ConferenceMainPage({this.conferenceId,
-    this.isCreateConference,
-    this.conferenceParams,
-    this.conferenceObserver,
-    this.chatWidget,
-    this.pwd = '',
-    this.roomLink,
-    this.endTime,
-    Key? key})
+  const ConferenceMainPage(
+      {this.conferenceId,
+      this.isCreateConference,
+      this.conferenceParams,
+      this.conferenceObserver,
+      this.chatWidget,
+      this.pwd = '',
+      this.roomLink,
+      this.endTime,
+      Key? key})
       : super(key: key);
 
   /// 会议密码
@@ -114,11 +115,10 @@ class ConferenceMainPage extends GetView<ConferenceMainController> {
                         ? 620.0.scale375Height()
                         : Get.height,
                     child: Obx(
-                          () =>
-                      controller.isEnteredRoom.value
+                      () => controller.isEnteredRoom.value
                           ? RoomStore.to.currentUser.hasScreenStream.value
-                          ? const LocalScreenSharingWidget()
-                          : const VideoPageTurningPage()
+                              ? const LocalScreenSharingWidget()
+                              : const VideoPageTurningPage()
                           : const SizedBox.shrink(),
                     ),
                   ),
@@ -126,63 +126,67 @@ class ConferenceMainPage extends GetView<ConferenceMainController> {
               ],
             ),
             Obx(
-                  () =>
-                  Visibility(
-                    visible: controller.isEnteredRoom.value,
-                    child: TopViewWidget(orientation, pwd: pwd, roomLink: roomLink, endTime: endTime,),
-                  ),
+              () => Visibility(
+                visible: controller.isEnteredRoom.value,
+                child: TopViewWidget(
+                  orientation,
+                  pwd: pwd,
+                  roomLink: roomLink,
+                  endTime: endTime,
+                ),
+              ),
             ),
             Obx(
-                  () =>
-                  Visibility(
-                    visible: RoomStore.to.isFloatChatVisible.value,
-                    child: Positioned(
-                      bottom: orientation == Orientation.portrait
-                          ? 88.0.scale375()
-                          : 70.0.scale375(),
-                      left: orientation == Orientation.portrait
-                          ? 16.0.scale375()
-                          : 52.0.scale375(),
-                      child: FloatChatWidget(
-                          roomId: RoomStore.to.roomInfo.roomId),
-                    ),
-                  ),
+              () => Visibility(
+                visible: RoomStore.to.isFloatChatVisible.value,
+                child: Positioned(
+                  bottom: orientation == Orientation.portrait
+                      ? 88.0.scale375()
+                      : 70.0.scale375(),
+                  left: orientation == Orientation.portrait
+                      ? 16.0.scale375()
+                      : 52.0.scale375(),
+                  child: FloatChatWidget(roomId: RoomStore.to.roomInfo.roomId),
+                ),
+              ),
             ),
             Column(
               children: [
                 const Expanded(child: SizedBox()),
                 Obx(
-                      () =>
-                      Visibility(
-                        visible: controller.areWidgetsVisible.value &&
-                            controller.isEnteredRoom.value,
-                        child: BottomViewWidget(orientation),
-                      ),
+                  () => Visibility(
+                    visible: controller.areWidgetsVisible.value &&
+                        controller.isEnteredRoom.value,
+                    child: BottomViewWidget(
+                      orientation,
+                      endTime: endTime,
+                      chat: chatWidget,
+                      roomLink: roomLink,
+                    ),
+                  ),
                 ),
                 Obx(
-                      () =>
-                      Visibility(
-                        visible: !controller.areWidgetsVisible.value &&
-                            RoomStore.to.isMicItemTouchable.value,
-                        child: Column(
-                          children: [
-                            const MicButton(),
-                            SizedBox(
-                                height: orientation == Orientation.landscape
-                                    ? 10.0.scale375()
-                                    : 29.0.scale375()),
-                          ],
-                        ),
-                      ),
+                  () => Visibility(
+                    visible: !controller.areWidgetsVisible.value &&
+                        RoomStore.to.isMicItemTouchable.value,
+                    child: Column(
+                      children: [
+                        const MicButton(),
+                        SizedBox(
+                            height: orientation == Orientation.landscape
+                                ? 10.0.scale375()
+                                : 29.0.scale375()),
+                      ],
+                    ),
+                  ),
                 ),
               ],
             ),
             Obx(
-                  () =>
-                  Visibility(
-                    visible: RoomStore.to.isFloatChatVisible.value,
-                    child: const InputWidget(),
-                  ),
+              () => Visibility(
+                visible: RoomStore.to.isFloatChatVisible.value,
+                child: const InputWidget(),
+              ),
             ),
           ],
         ),

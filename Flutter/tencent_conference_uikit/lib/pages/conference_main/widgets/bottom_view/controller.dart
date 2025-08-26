@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:replay_kit_launcher/replay_kit_launcher.dart';
 import 'package:tencent_conference_uikit/common/index.dart';
@@ -11,7 +12,11 @@ import 'package:tencent_conference_uikit/pages/conference_main/widgets/float_win
 import '../../../../common/store/float_window_store.dart';
 
 class BottomViewController extends GetxController {
-  BottomViewController();
+  final String? endTime;
+  final String? roomLink;
+  final Widget? chat;
+  BottomViewController({this.endTime, this.roomLink, this.chat});
+
 
   static const _seatIndex = -1;
   static const _reqTimeout = 0;
@@ -259,6 +264,9 @@ class BottomViewController extends GetxController {
 
   Future<void> enableFloatWindow() async {
     Get.put<FloatWindowStore>(FloatWindowStore(), permanent: true);
+    FloatWindowStore.to.endTime = endTime;
+    FloatWindowStore.to.chat = chat;
+    FloatWindowStore.to.roomLink = roomLink;
     bool success = await FloatWindowStore.to.showFloatWindow();
     if (success) {
       Get.back();

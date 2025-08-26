@@ -235,4 +235,16 @@ const Map<String, String> roomContentsSr = {
   'BET': 'Istočno-brazilsko vreme',
   'FNT': 'Fernando de Noronha vreme',
   'CAT': 'Centralnoafričko vreme',
+  "meeting_time_over": "Време за састанак је истекло, систем ће се аутоматски завршити.",
+  "invite_link": "Link za pozivnicu",
+  "invite_link_copied": "Link za pozivnicu je kopiran",
+  "meeting_password": "Lozinka",
+  "my_name": "Moje ime",
+  "meeting_duration": "Trajanje sastanka",
+  "current_free_version": "Trenutno u besplatnoj verziji",
+  "available_video_meetings": "Dostupni video sastanci",
+  "meeting_300_people_unlimited": "· 300 učesnika neograničeno vreme",
+  "other_meeting_features": "Ostale funkcije sastanka",
+  "video_participant_limit": "Broj učesnika videa",
+  "co_host": "Su-domaćin"
 };

@@ -235,4 +235,16 @@ const Map<String, String> roomContentsFrFR = {
   'BET': 'Heure Est Brésil',
   'FNT': 'Heure Fernando de Noronha',
   'CAT': 'Heure Afrique Centrale',
+  "meeting_time_over": "Le temps de réunion est écoulé, le système se terminera automatiquement.",
+  "invite_link": "Lien d'invitation",
+  "invite_link_copied": "Lien d'invitation copié",
+  "meeting_password": "Mot de passe",
+  "my_name": "Mon nom",
+  "meeting_duration": "Durée de la réunion",
+  "current_free_version": "Actuellement en version gratuite",
+  "available_video_meetings": "Réunions vidéo disponibles",
+  "meeting_300_people_unlimited": "· 300 participants sans limite de temps",
+  "other_meeting_features": "Autres fonctionnalités de réunion",
+  "video_participant_limit": "Nombre de participants vidéo",
+  "co_host": "Co-animateur"
 };

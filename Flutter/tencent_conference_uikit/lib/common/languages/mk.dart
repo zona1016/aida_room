@@ -235,4 +235,16 @@ const Map<String, String> roomContentsMkMK = {
   'BET': 'Бразилско источнo време',
   'FNT': 'Фернандо де Норонја време',
   'CAT': 'Централноафриканско време',
+  "meeting_time_over": "Времето за состанокот е истечено, системот ќе заврши автоматски.",
+  "invite_link": "Линк за покана",
+  "invite_link_copied": "Линк за покана е копиран",
+  "meeting_password": "Лозинка",
+  "my_name": "Мое име",
+  "meeting_duration": "Времетраење на состанокот",
+  "current_free_version": "Тековно е бесплатна верзија на состанок",
+  "available_video_meetings": "Достапни видео состаноци",
+  "meeting_300_people_unlimited": "· 300 учесници без ограничување",
+  "other_meeting_features": "Други функции на состанокот",
+  "video_participant_limit": "Број на учесници на видео",
+  "co_host": "Сопомагач домаќин"
 };

@@ -80,7 +80,7 @@ class TopViewController extends GetxController {
         _engineManager.exitRoom();
       }
       showConferenceDialog(
-        title: '会议时间已用完，系统将自动结束。'.roomTr,
+        title: 'meeting_time_over'.roomTr,
         confirmText: 'ok'.roomTr,
         confirmTextStyle: RoomTheme.defaultTheme.textTheme.labelMedium,
         onConfirm: () {

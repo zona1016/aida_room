@@ -235,4 +235,16 @@ const Map<String, String> roomContentsDeDE = {
   'BET': 'Brasilien-Ostzeit',
   'FNT': 'Fernando-de-Noronha-Zeit',
   'CAT': 'Zentralafrika-Zeit',
+  "meeting_time_over": "Die Besprechungszeit ist abgelaufen, das System wird automatisch beendet.",
+  "invite_link": "Einladungslink",
+  "invite_link_copied": "Einladungslink kopiert",
+  "meeting_password": "Passwort",
+  "my_name": "Mein Name",
+  "meeting_duration": "Teilnahmedauer",
+  "current_free_version": "Derzeit in der kostenlosen Version",
+  "available_video_meetings": "Verfügbare Videokonferenzen",
+  "meeting_300_people_unlimited": "· 300 Teilnehmer unbegrenzt",
+  "other_meeting_features": "Weitere Meeting-Funktionen",
+  "video_participant_limit": "Teilnehmerzahl für Video",
+  "co_host": "Co-Moderator"
 };

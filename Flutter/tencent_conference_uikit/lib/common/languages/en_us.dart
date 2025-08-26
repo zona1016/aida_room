@@ -254,4 +254,16 @@ const Map<String, String> roomContentsEnUS = {
   'BET': 'Brazil Eastern Time',
   'FNT': 'Fernando de Noronha Time',
   'CAT': 'Central Africa Time',
+  "meeting_time_over": "The meeting time is over, the system will end it automatically.",
+  "invite_link": "Invite Link",
+  "invite_link_copied": "Invite link copied",
+  "meeting_password": "Password",
+  "my_name": "My Name",
+  "meeting_duration": "Meeting Duration",
+  "current_free_version": "Currently in Free Version",
+  "available_video_meetings": "Available video meetings",
+  "meeting_300_people_unlimited": "· 300 participants unlimited time",
+  "other_meeting_features": "Other meeting features",
+  "video_participant_limit": "Video participant limit",
+  "co_host": "Co-host"
 };

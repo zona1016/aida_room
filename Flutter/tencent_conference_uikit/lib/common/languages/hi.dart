@@ -235,4 +235,16 @@ const Map<String, String> roomContentsHiIN = {
   'BET': 'ब्राज़ील पूर्व समय',
   'FNT': 'फर्नांडो डी नोरोन्हा समय',
   'CAT': 'मध्य अफ़्रीका समय',
+  "meeting_time_over": "मीटिंग का समय समाप्त हो गया है, सिस्टम स्वतः समाप्त हो जाएगा।",
+  "invite_link": "निमंत्रण लिंक",
+  "invite_link_copied": "निमंत्रण लिंक कॉपी किया गया",
+  "meeting_password": "पासवर्ड",
+  "my_name": "मेरा नाम",
+  "meeting_duration": "सदस्यता अवधि",
+  "current_free_version": "वर्तमान में मुफ्त संस्करण में",
+  "available_video_meetings": "उपलब्ध वीडियो बैठकें",
+  "meeting_300_people_unlimited": "· 300 प्रतिभागी असीमित समय",
+  "other_meeting_features": "अन्य बैठक सुविधाएँ",
+  "video_participant_limit": "वीडियो प्रतिभागी सीमा",
+  "co_host": "सह-आयोजक"
 };

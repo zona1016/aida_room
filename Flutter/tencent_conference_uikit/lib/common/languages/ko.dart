@@ -235,4 +235,16 @@ const Map<String, String> roomContentsKoKR = {
   'BET': '브라질 동부 시간',
   'FNT': '페르난도데노로냐 시간',
   'CAT': '중앙 아프리카 시간',
+  "meeting_time_over": "회의 시간이 종료되었습니다. 시스템이 자동으로 종료됩니다.",
+  "invite_link": "초대 링크",
+  "invite_link_copied": "초대 링크가 복사되었습니다",
+  "meeting_password": "비밀번호",
+  "my_name": "내 이름",
+  "meeting_duration": "참석 시간",
+  "current_free_version": "현재 무료 버전 회의",
+  "available_video_meetings": "사용 가능한 화상 회의",
+  "meeting_300_people_unlimited": "· 300명 무제한 회의",
+  "other_meeting_features": "기타 회의 기능",
+  "video_participant_limit": "영상 참여 인원",
+  "co_host": "공동 호스트"
 };

@@ -235,4 +235,16 @@ const Map<String, String> roomContentsVi = {
   'BET': 'Giờ Đông Brazil',
   'FNT': 'Giờ Fernando de Noronha',
   'CAT': 'Giờ Trung Phi',
+  "meeting_time_over": "Thời gian cuộc họp đã hết, hệ thống sẽ tự động kết thúc.",
+  "invite_link": "Liên kết mời",
+  "invite_link_copied": "Liên kết mời đã sao chép",
+  "meeting_password": "Mật khẩu",
+  "my_name": "Tên của tôi",
+  "meeting_duration": "Thời lượng tham dự",
+  "current_free_version": "Hiện đang ở phiên bản miễn phí",
+  "available_video_meetings": "Các cuộc họp video có sẵn",
+  "meeting_300_people_unlimited": "· 300 người không giới hạn thời gian",
+  "other_meeting_features": "Các tính năng cuộc họp khác",
+  "video_participant_limit": "Số người tham gia video",
+  "co_host": "Đồng chủ trì"
 };

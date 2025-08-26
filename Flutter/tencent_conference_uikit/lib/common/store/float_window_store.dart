@@ -11,6 +11,11 @@ import '../../platform/rtc_conference_tuikit_platform_interface.dart';
 import '../models/user.dart';
 
 class FloatWindowStore extends GetxController {
+
+  late String? roomLink;
+  late Widget? chat;
+  late String? endTime;
+
   static FloatWindowStore get to => Get.find();
 
   final UserModel _previousFloatWindowUserModel = UserModel();
@@ -18,6 +23,7 @@ class FloatWindowStore extends GetxController {
   final _maxVolumeUserId = "".obs;
   final _volumeFilterMinLimit = 10;
   final int _floatWindowUserIdChangInterval = 5;
+
 
   late TUIRoomObserver _observer;
 

@@ -73,7 +73,7 @@ class RoomInfoSheet extends GetView<TopViewController> {
                             width: 64,
                           ),
                           Text(
-                            '邀请链接'.roomTr,
+                            'invite_link'.roomTr,
                             style: const TextStyle(
                                 fontSize: 14, color: RoomBaseColor.white),
                           ),
@@ -83,7 +83,7 @@ class RoomInfoSheet extends GetView<TopViewController> {
                           GestureDetector(
                             onTap: () {
                               Clipboard.setData(ClipboardData(text: roomLink ?? ''));
-                              makeToast(msg: '邀请链接已复制'.roomTr);
+                              makeToast(msg: 'invite_link_copied'.roomTr);
                             },
                             child: const Icon(
                               Icons.link_rounded,
@@ -95,7 +95,7 @@ class RoomInfoSheet extends GetView<TopViewController> {
                       )),
                   if (pwd != null && pwd!.isNotEmpty)
                     _buildListTile(
-                      leading: '密  码'.roomTr,
+                      leading: 'meeting_password'.roomTr,
                       title: pwd!,
                     ),
                   _buildListTile(
@@ -120,7 +120,7 @@ class RoomInfoSheet extends GetView<TopViewController> {
                         ],
                       )),
                   _buildListTile(
-                      leading: '我的名称'.roomTr,
+                      leading: 'my_name'.roomTr,
                       title: '',
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
@@ -140,7 +140,7 @@ class RoomInfoSheet extends GetView<TopViewController> {
                         ],
                       )),
                   Obx(() => _buildListTile(
-                      leading: '参会时长'.roomTr,
+                      leading: 'meeting_duration'.roomTr,
                       title: controller.timerText.value)),
                   const SizedBox(height: 16,),
                   Container(height: 10, color: RoomBaseColor.black,),
@@ -148,7 +148,7 @@ class RoomInfoSheet extends GetView<TopViewController> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Text(
-                      '当前为免费版会议'.roomTr,
+                      'current_free_version'.roomTr,
                       style: const TextStyle(
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
@@ -171,7 +171,7 @@ class RoomInfoSheet extends GetView<TopViewController> {
                         ),
                         const SizedBox(width: 8,),
                         Text(
-                          '可以召开以下视频会议'.roomTr,
+                          'available_video_meetings'.roomTr,
                           style: const TextStyle(
                               fontSize: 14,
                               color: Colors.white),
@@ -183,7 +183,7 @@ class RoomInfoSheet extends GetView<TopViewController> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Text(
-                      '· 300人不限时会议'.roomTr,
+                      'meeting_300_people_unlimited'.roomTr,
                       style: const TextStyle(
                           fontSize: 12,
                           color: Colors.white),
@@ -205,7 +205,7 @@ class RoomInfoSheet extends GetView<TopViewController> {
                         ),
                         const SizedBox(width: 8,),
                         Text(
-                          '其他会议功能'.roomTr,
+                          'other_meeting_features'.roomTr,
                           style: const TextStyle(
                               fontSize: 14,
                               color: Colors.white),
@@ -217,7 +217,7 @@ class RoomInfoSheet extends GetView<TopViewController> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Text(
-                      '开启视频人数'.roomTr,
+                      'video_participant_limit'.roomTr,
                       style: const TextStyle(
                           fontSize: 12,
                           color: Colors.white),
@@ -228,7 +228,7 @@ class RoomInfoSheet extends GetView<TopViewController> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Text(
-                      '联席主持人'.roomTr,
+                      'co_host'.roomTr,
                       style: const TextStyle(
                           fontSize: 12,
                           color: Colors.white),

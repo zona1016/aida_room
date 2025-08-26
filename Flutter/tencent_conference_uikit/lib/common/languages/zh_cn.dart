@@ -235,4 +235,16 @@ const Map<String, String> roomContentsZhCN = {
   'BET': '巴西东部时间',
   'FNT': '费尔南多-迪诺罗尼亚时间',
   'CAT': '中非时间',
+  "meeting_time_over": "会议时间已用完，系统将自动结束。",
+  "invite_link": "邀请链接",
+  "invite_link_copied": "邀请链接已复制",
+  "meeting_password": "密  码",
+  "my_name": "我的名称",
+  "meeting_duration": "参会时长",
+  "current_free_version": "当前为免费版会议",
+  "available_video_meetings": "可以召开以下视频会议",
+  "meeting_300_people_unlimited": "· 300人不限时会议",
+  "other_meeting_features": "其他会议功能",
+  "video_participant_limit": "开启视频人数",
+  "co_host": "联席主持人"
 };

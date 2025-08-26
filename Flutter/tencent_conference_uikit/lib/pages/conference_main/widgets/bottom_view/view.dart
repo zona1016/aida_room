@@ -7,7 +7,14 @@ import 'index.dart';
 import 'widgets/widgets.dart';
 
 class BottomViewWidget extends GetView<BottomViewController> {
-  const BottomViewWidget(this.orientation, {Key? key}) : super(key: key);
+  /// 结束时间
+  final String? endTime;
+  final String? roomLink;
+  final Widget? chat;
+
+  const BottomViewWidget(this.orientation,
+      {Key? key, this.endTime, this.roomLink, this.chat})
+      : super(key: key);
 
   final Orientation orientation;
 
@@ -59,10 +66,14 @@ class BottomViewWidget extends GetView<BottomViewController> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<BottomViewController>(
-      init: BottomViewController(),
+      init: BottomViewController(
+          endTime: endTime, chat: chat, roomLink: roomLink),
       id: "bottom_view",
       builder: (_) {
-        return Container(color: RoomBaseColor.whiteWithOpacity01, child: _buildView(),);
+        return Container(
+          color: RoomBaseColor.whiteWithOpacity01,
+          child: _buildView(),
+        );
       },
       autoRemove: false,
     );

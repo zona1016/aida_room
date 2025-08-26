@@ -235,4 +235,16 @@ const Map<String, String> roomContentsEsES = {
   'BET': 'Hora este de Brasil',
   'FNT': 'Hora Fernando de Noronha',
   'CAT': 'Hora de África Central',
+  "meeting_time_over": "El tiempo de la reunión ha terminado, el sistema la finalizará automáticamente.",
+  "invite_link": "Enlace de invitación",
+  "invite_link_copied": "Enlace de invitación copiado",
+  "meeting_password": "Contraseña",
+  "my_name": "Mi nombre",
+  "meeting_duration": "Duración de la reunión",
+  "current_free_version": "Actualmente en versión gratuita",
+  "available_video_meetings": "Reuniones de video disponibles",
+  "meeting_300_people_unlimited": "· 300 participantes sin límite de tiempo",
+  "other_meeting_features": "Otras funciones de la reunión",
+  "video_participant_limit": "Número de participantes de video",
+  "co_host": "Coanfitrión"
 };

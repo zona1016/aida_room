@@ -235,4 +235,16 @@ const Map<String, String> roomContentsJaJP = {
   'BET': 'ブラジル東部時間',
   'FNT': 'フェルナンド・デ・ノローニャ時間',
   'CAT': '中央アフリカ時間',
+  "meeting_time_over": "会議時間が終了しました。システムが自動的に終了します。",
+  "invite_link": "招待リンク",
+  "invite_link_copied": "招待リンクをコピーしました",
+  "meeting_password": "パスワード",
+  "my_name": "私の名前",
+  "meeting_duration": "参加時間",
+  "current_free_version": "現在は無料版の会議です",
+  "available_video_meetings": "利用可能なビデオ会議",
+  "meeting_300_people_unlimited": "· 300人 無制限",
+  "other_meeting_features": "その他の会議機能",
+  "video_participant_limit": "ビデオ参加人数",
+  "co_host": "共同ホスト"
 };
