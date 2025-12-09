@@ -22,7 +22,7 @@ class RoomInfoSheet extends GetView<TopViewController> {
 
         return BottomSheetWidget(
           height: orientation == Orientation.portrait
-              ? 400.0.scale375()
+              ? 250.0.scale375()
               : Get.height,
           orientation: orientation,
           padding: EdgeInsets.zero,
@@ -139,102 +139,7 @@ class RoomInfoSheet extends GetView<TopViewController> {
                           ),
                         ],
                       )),
-                  Obx(() => _buildListTile(
-                      leading: 'meeting_duration'.roomTr,
-                      title: controller.timerText.value)),
-                  const SizedBox(height: 16,),
-                  Container(height: 10, color: RoomBaseColor.black,),
-                  const SizedBox(height: 16,),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Text(
-                      'current_free_version'.roomTr,
-                      style: const TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                      textAlign: TextAlign.left,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          height: 12,
-                          width: 3,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(1.5),
-                            color: RoomBaseColor.primaryColor
-                          ),
-                        ),
-                        const SizedBox(width: 8,),
-                        Text(
-                          'available_video_meetings'.roomTr,
-                          style: const TextStyle(
-                              fontSize: 14,
-                              color: Colors.white),
-                          textAlign: TextAlign.left,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Text(
-                      'meeting_300_people_unlimited'.roomTr,
-                      style: const TextStyle(
-                          fontSize: 12,
-                          color: Colors.white),
-                      textAlign: TextAlign.left,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Container(
-                          height: 12,
-                          width: 3,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(1.5),
-                              color: RoomBaseColor.primaryColor
-                          ),
-                        ),
-                        const SizedBox(width: 8,),
-                        Text(
-                          'other_meeting_features'.roomTr,
-                          style: const TextStyle(
-                              fontSize: 14,
-                              color: Colors.white),
-                          textAlign: TextAlign.left,
-                        ),
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Text(
-                      'video_participant_limit'.roomTr,
-                      style: const TextStyle(
-                          fontSize: 12,
-                          color: Colors.white),
-                      textAlign: TextAlign.left,
-                    ),
-                  ),
-                  const SizedBox(height: 16,),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Text(
-                      'co_host'.roomTr,
-                      style: const TextStyle(
-                          fontSize: 12,
-                          color: Colors.white),
-                      textAlign: TextAlign.left,
-                    ),
-                  ),
+
                   // _buildListTile(
                   //   leading: 'roomType'.roomTr,
                   //   title: controller.roomInfo.isSeatEnabled == false &&

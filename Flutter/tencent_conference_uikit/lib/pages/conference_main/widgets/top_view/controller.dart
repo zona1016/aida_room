@@ -13,7 +13,6 @@ import 'package:tencent_conference_uikit/manager/rtc_engine_manager.dart';
 import 'package:tencent_conference_uikit/pages/conference_main/index.dart';
 
 class TopViewController extends GetxController {
-
   /// 结束时间
   final String? endTime;
 
@@ -55,21 +54,23 @@ class TopViewController extends GetxController {
   void updateTimerLabelText() {
     int currentTimeStamp = DateTime.now().millisecondsSinceEpoch;
     int totalSeconds =
-        ((currentTimeStamp - RoomStore.to.timeStampOnEnterRoom) / 1000)
+        ((double.parse(endTime ?? '0').toInt() - currentTimeStamp) / 1000)
             .abs()
             .floor();
 
     updateTimer(totalSeconds: totalSeconds);
 
     topMenuTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      totalSeconds += 1;
+      totalSeconds -= 1;
       updateTimer(totalSeconds: totalSeconds);
       needEdit();
     });
   }
 
   void needEdit() {
-    if (double.parse(endTime ?? '0').toInt() <= DateTime.now().millisecondsSinceEpoch) {
+    if (double.parse(endTime ?? '0').toInt() <=
+        DateTime.now().millisecondsSinceEpoch) {
+      topMenuTimer?.cancel();
       if (showAlert) return;
       showAlert = true;
       conferenceMainController.conferenceObserver?.onConferenceFinished
@@ -87,7 +88,8 @@ class TopViewController extends GetxController {
           Get.until((route) {
             var args = route.settings.arguments;
             if (args is Map) {
-              return route is! PopupRoute && args['from'] != 'ConferenceMainPage';
+              return route is! PopupRoute &&
+                  args['from'] != 'ConferenceMainPage';
             }
             return route is! PopupRoute;
           });
