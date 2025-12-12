@@ -123,8 +123,9 @@ class BottomViewController extends GetxController {
 
     String appGroup = '';
     if (Platform.isIOS) {
-      appGroup = 'com.tencent.TUIRoomTXReplayKit-Screen';
-      ReplayKitLauncher.launchReplayKitBroadcast('TXReplayKit_Screen');
+      print('-----------------');
+      appGroup = 'group.com.aida';
+      ReplayKitLauncher.launchReplayKitBroadcast('AID2Group');
     }
     _engineManager.startScreenSharing(appGroup: appGroup);
   }
