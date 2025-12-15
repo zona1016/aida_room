@@ -16,7 +16,10 @@ class TopViewController extends GetxController {
   /// 结束时间
   final String? endTime;
 
-  TopViewController({this.endTime});
+  /// 结束时间
+  final String? startTime;
+
+  TopViewController({this.endTime, this.startTime});
 
   final RoomEngineManager _engineManager = RoomEngineManager();
   late TUIRoomInfo roomInfo;
@@ -54,14 +57,14 @@ class TopViewController extends GetxController {
   void updateTimerLabelText() {
     int currentTimeStamp = DateTime.now().millisecondsSinceEpoch;
     int totalSeconds =
-        ((double.parse(endTime ?? '0').toInt() - currentTimeStamp) / 1000)
+        ((currentTimeStamp - (double.parse(startTime ?? '0').toInt())) / 1000)
             .abs()
             .floor();
 
     updateTimer(totalSeconds: totalSeconds);
 
     topMenuTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      totalSeconds -= 1;
+      totalSeconds += 1;
       updateTimer(totalSeconds: totalSeconds);
       needEdit();
     });

@@ -6,13 +6,15 @@ import 'package:tencent_conference_uikit/pages/conference_main/widgets/widgets.d
 import 'widgets/widgets.dart';
 
 class TopViewWidget extends GetView<TopViewController> {
-  const TopViewWidget(this.orientation, {Key? key, this.pwd, this.roomLink, this.endTime}) : super(key: key);
+  const TopViewWidget(this.orientation, {Key? key, this.pwd, this.roomLink, this.endTime, this.startTime}) : super(key: key);
 
   final Orientation orientation;
   final String? pwd;
   final String? roomLink;
   /// 结束时间
   final String? endTime;
+  /// 开始时间
+  final String? startTime;
 
   Widget _buildView() {
     return Container(
@@ -91,7 +93,7 @@ class TopViewWidget extends GetView<TopViewController> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<TopViewController>(
-      init: TopViewController(endTime: endTime),
+      init: TopViewController(endTime: endTime, startTime: startTime),
       id: "topview",
       builder: (_) {
         return Container(

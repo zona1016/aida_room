@@ -88,9 +88,15 @@ class FloatWindowController extends GetxController
   void onTap() {
     String? roomLink = FloatWindowStore.to.roomLink;
     String? endTime = FloatWindowStore.to.endTime;
+    String? startTime = FloatWindowStore.to.startTime;
     Widget? chat = FloatWindowStore.to.chat;
     onFloatWindowTap?.call();
-    Get.to(ConferenceMainPage(endTime: endTime, chatWidget: chat, roomLink: roomLink,));
+    Get.to(ConferenceMainPage(
+      endTime: endTime,
+      chatWidget: chat,
+      roomLink: roomLink,
+      startTime: startTime,
+    ));
   }
 
   bool isCurrentUser() {

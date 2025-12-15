@@ -15,6 +15,7 @@ class FloatWindowStore extends GetxController {
   late String? roomLink;
   late Widget? chat;
   late String? endTime;
+  late String? startTime;
 
   static FloatWindowStore get to => Get.find();
 

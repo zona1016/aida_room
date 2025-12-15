@@ -20,6 +20,7 @@ class ConferenceMainPage extends GetView<ConferenceMainController> {
       this.pwd = '',
       this.roomLink,
       this.endTime,
+      this.startTime,
       Key? key})
       : super(key: key);
 
@@ -31,6 +32,9 @@ class ConferenceMainPage extends GetView<ConferenceMainController> {
 
   /// 结束时间
   final String? endTime;
+
+  /// 开始时间
+  final String? startTime;
 
   /// The Id of the conference to be created or joined.
   ///
@@ -131,6 +135,7 @@ class ConferenceMainPage extends GetView<ConferenceMainController> {
                 child: TopViewWidget(
                   orientation,
                   pwd: pwd,
+                  startTime: startTime,
                   roomLink: roomLink,
                   endTime: endTime,
                 ),
