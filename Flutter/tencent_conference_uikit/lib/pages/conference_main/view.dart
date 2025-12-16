@@ -167,6 +167,7 @@ class ConferenceMainPage extends GetView<ConferenceMainController> {
                       endTime: endTime,
                       chat: chatWidget,
                       roomLink: roomLink,
+                      startTime: startTime,
                     ),
                   ),
                 ),

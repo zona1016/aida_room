@@ -13,9 +13,10 @@ import '../../../../common/store/float_window_store.dart';
 
 class BottomViewController extends GetxController {
   final String? endTime;
+  final String? startTime;
   final String? roomLink;
   final Widget? chat;
-  BottomViewController({this.endTime, this.roomLink, this.chat});
+  BottomViewController({this.endTime, this.roomLink, this.chat, this.startTime});
 
 
   static const _seatIndex = -1;
@@ -268,6 +269,7 @@ class BottomViewController extends GetxController {
     FloatWindowStore.to.endTime = endTime;
     FloatWindowStore.to.chat = chat;
     FloatWindowStore.to.roomLink = roomLink;
+    FloatWindowStore.to.startTime = startTime;
     bool success = await FloatWindowStore.to.showFloatWindow();
     if (success) {
       Get.back();
