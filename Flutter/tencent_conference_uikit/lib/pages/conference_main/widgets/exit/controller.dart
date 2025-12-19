@@ -19,24 +19,24 @@ class ExitController extends GetxController {
       return;
     }
 
-    if(RoomStore.to.userInfoList.length > 2){
-      showConferenceBottomSheet(const TransferHostWidget());
-      return;
-    }
+    // if(RoomStore.to.userInfoList.length > 2){
+    //   showConferenceBottomSheet(const TransferHostWidget());
+    //   return;
+    // }
 
-   if (RoomStore.to.userInfoList.length == 2) {
-      var nextOwnerId = RoomStore.to.userInfoList
-          .firstWhere((element) =>
-              element.userId.value != RoomStore.to.currentUser.userId.value)
-          .userId
-          .value;
-      var result =
-          await _engineManager.changeUserRole(nextOwnerId, TUIRole.roomOwner);
-      if (result.code == TUIError.success) {
-        _exitRoom();
-        return;
-      }
-    }
+   // if (RoomStore.to.userInfoList.length == 2) {
+   //    var nextOwnerId = RoomStore.to.userInfoList
+   //        .firstWhere((element) =>
+   //            element.userId.value != RoomStore.to.currentUser.userId.value)
+   //        .userId
+   //        .value;
+   //    var result =
+   //        await _engineManager.changeUserRole(nextOwnerId, TUIRole.roomOwner);
+   //    if (result.code == TUIError.success) {
+   //      _exitRoom();
+   //      return;
+   //    }
+   //  }
     _exitRoom();
   }
 
