@@ -12,7 +12,7 @@ import 'package:tencent_conference_uikit/manager/conference_list_manager.dart';
 import 'package:tencent_conference_uikit/manager/rtc_engine_manager.dart';
 import 'package:tencent_conference_uikit/pages/conference_main/index.dart';
 
-class TopViewController extends GetxController {
+class TopViewController extends GetxController with WidgetsBindingObserver {
   /// 结束时间
   final String? endTime;
 
@@ -28,16 +28,57 @@ class TopViewController extends GetxController {
   final conferenceMainController = Get.find<ConferenceMainController>();
 
   Timer? topMenuTimer;
+  bool _timerRunning = false;
   RxString timerText = '00:00'.obs;
   bool showAlert = false;
 
   @override
   void onInit() {
     super.onInit();
+    WidgetsBinding.instance.addObserver(this);
     roomInfo = RoomStore.to.roomInfo;
     roomName.value = roomInfo.name ?? roomInfo.roomId;
     _initObserver();
     updateTimerLabelText();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      recalculateTimerFromStartTime();
+    }
+  }
+
+  void recalculateTimerFromStartTime() {
+    final int start = int.tryParse(startTime ?? '') ?? 0;
+    if (start <= 0) return;
+
+    // 防止重复启动
+    if (_timerRunning) return;
+    _timerRunning = true;
+
+    _updateFromStart(start);
+
+    topMenuTimer?.cancel();
+    topMenuTimer = Timer.periodic(const Duration(seconds: 1), (_) {
+      _updateFromStart(start);
+    });
+  }
+
+  void _updateFromStart(int start) {
+    final int now = DateTime.now().millisecondsSinceEpoch;
+
+    // ❗不要 abs
+    final int totalSeconds = ((now - start) ~/ 1000).clamp(0, 1 << 31);
+
+    updateTimer(totalSeconds: totalSeconds);
+    needEdit();
+  }
+
+  void onAppPaused() {
+    _timerRunning = false;
+    topMenuTimer?.cancel();
+    topMenuTimer = null;
   }
 
   void _initObserver() {
