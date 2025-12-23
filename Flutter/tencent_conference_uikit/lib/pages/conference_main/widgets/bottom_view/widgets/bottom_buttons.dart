@@ -133,34 +133,6 @@ class BottomButtonsWidget extends GetView<BottomViewController> {
           ),
         ),
       ),
-      BottomButtonItemWidget(
-        image: Image.asset(
-          AssetsImages.roomShareScreenOn,
-          package: 'tencent_conference_uikit',
-        ),
-        selectedImage: Image.asset(
-          AssetsImages.roomShareScreenOff,
-          package: 'tencent_conference_uikit',
-        ),
-        onPressed: () {
-          controller.onScreenShareButtonPressed();
-        },
-        isSelected: RoomStore.to.currentUser.hasScreenStream,
-        text: 'shareOn'.roomTr,
-        selectedText: 'shareOff'.roomTr,
-      ),
-      Obx(
-            () => BottomButtonItemWidget(
-          image: Image.asset(
-            AssetsImages.roomMember,
-            package: 'tencent_conference_uikit',
-          ),
-          onPressed: () {
-            showConferenceBottomSheet(const UserListWidget());
-          },
-          text: '${'member'.roomTr}(${RoomStore.to.roomUserCount.value})',
-        ),
-      ),
       Visibility(
         visible: controller.conferenceMainController.chatWidget != null,
         child: BottomButtonItemWidget(
@@ -173,6 +145,34 @@ class BottomButtonsWidget extends GetView<BottomViewController> {
                 arguments: {'from': 'ConferenceMainPage'});
           },
           text: 'chat'.roomTr,
+        ),
+      ),
+      // BottomButtonItemWidget(
+      //   image: Image.asset(
+      //     AssetsImages.roomShareScreenOn,
+      //     package: 'tencent_conference_uikit',
+      //   ),
+      //   selectedImage: Image.asset(
+      //     AssetsImages.roomShareScreenOff,
+      //     package: 'tencent_conference_uikit',
+      //   ),
+      //   onPressed: () {
+      //     controller.onScreenShareButtonPressed();
+      //   },
+      //   isSelected: RoomStore.to.currentUser.hasScreenStream,
+      //   text: 'shareOn'.roomTr,
+      //   selectedText: 'shareOff'.roomTr,
+      // ),
+      Obx(
+            () => BottomButtonItemWidget(
+          image: Image.asset(
+            AssetsImages.roomMember,
+            package: 'tencent_conference_uikit',
+          ),
+          onPressed: () {
+            showConferenceBottomSheet(const UserListWidget());
+          },
+          text: '${'member'.roomTr}(${RoomStore.to.roomUserCount.value})',
         ),
       ),
       // BottomButtonItemWidget(
