@@ -147,22 +147,6 @@ class BottomButtonsWidget extends GetView<BottomViewController> {
           text: 'chat'.roomTr,
         ),
       ),
-      // BottomButtonItemWidget(
-      //   image: Image.asset(
-      //     AssetsImages.roomShareScreenOn,
-      //     package: 'tencent_conference_uikit',
-      //   ),
-      //   selectedImage: Image.asset(
-      //     AssetsImages.roomShareScreenOff,
-      //     package: 'tencent_conference_uikit',
-      //   ),
-      //   onPressed: () {
-      //     controller.onScreenShareButtonPressed();
-      //   },
-      //   isSelected: RoomStore.to.currentUser.hasScreenStream,
-      //   text: 'shareOn'.roomTr,
-      //   selectedText: 'shareOff'.roomTr,
-      // ),
       Obx(
             () => BottomButtonItemWidget(
           image: Image.asset(
@@ -194,6 +178,22 @@ class BottomButtonsWidget extends GetView<BottomViewController> {
           controller.enableFloatWindow();
         },
         text: 'float'.roomTr,
+      ),
+      BottomButtonItemWidget(
+        image: Image.asset(
+          AssetsImages.roomShareScreenOn,
+          package: 'tencent_conference_uikit',
+        ),
+        selectedImage: Image.asset(
+          AssetsImages.roomShareScreenOff,
+          package: 'tencent_conference_uikit',
+        ),
+        onPressed: () {
+          controller.onScreenShareButtonPressed();
+        },
+        isSelected: RoomStore.to.currentUser.hasScreenStream,
+        text: 'shareOn'.roomTr,
+        selectedText: 'shareOff'.roomTr,
       ),
       BottomButtonItemWidget(
         image: Image.asset(
