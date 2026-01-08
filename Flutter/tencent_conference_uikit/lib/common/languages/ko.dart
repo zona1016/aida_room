@@ -80,7 +80,7 @@ const Map<String, String> roomContentsKoKR = {
   'screenSharingTip': '화면을 공유 중입니다...',
   'stopScreenShare': '화면 공유 중지',
   'liveScreen': '라이브 화면',
-  'stopTUIRoomScreenShare': 'TUIRoom 화면 공유 중지',
+  'stopTUIRoomScreenShare': '화면 공유 중지',
   'cancel': '취소',
   'stop': '중지',
   'doNotOpen': '나중에 열기',

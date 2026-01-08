@@ -80,7 +80,7 @@ const Map<String, String> roomContentsDeDE = {
   'screenSharingTip': 'Sie teilen gerade den Bildschirm...',
   'stopScreenShare': 'Teilen stoppen',
   'liveScreen': 'Bildschirm live',
-  'stopTUIRoomScreenShare': 'TUIRoom-Bildschirmfreigabe stoppen',
+  'stopTUIRoomScreenShare': 'Bildschirmfreigabe stoppen',
   'cancel': 'Abbrechen',
   'stop': 'Stoppen',
   'doNotOpen': 'Nicht öffnen',

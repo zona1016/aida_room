@@ -80,7 +80,7 @@ const Map<String, String> roomContentsZhCN = {
   'screenSharingTip': '你正在共享屏幕...',
   'stopScreenShare': '停止共享',
   'liveScreen': '直播屏幕',
-  'stopTUIRoomScreenShare': '停止TUIRoom屏幕共享屏幕直播',
+  'stopTUIRoomScreenShare': '停止屏幕共享屏幕直播',
   'cancel': '取消',
   'stop': '停止',
   'doNotOpen': '暂不开启',

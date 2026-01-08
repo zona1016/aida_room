@@ -80,7 +80,7 @@ const Map<String, String> roomContentsSr = {
   'screenSharingTip': 'Delite ekran...',
   'stopScreenShare': 'Prekini deljenje',
   'liveScreen': 'Prikaz uživo',
-  'stopTUIRoomScreenShare': 'Prekini TUIRoom deljenje',
+  'stopTUIRoomScreenShare': 'Prekini deljenje',
   'cancel': 'Otkaži',
   'stop': 'Zaustavi',
   'doNotOpen': 'Ne uključuj',

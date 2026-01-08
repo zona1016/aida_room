@@ -80,7 +80,7 @@ const Map<String, String> roomContentsItIT = {
   'screenSharingTip': 'Stai condividendo lo schermo...',
   'stopScreenShare': 'Interrompi condivisione',
   'liveScreen': 'Schermo live',
-  'stopTUIRoomScreenShare': 'Interrompi condivisione TUIRoom',
+  'stopTUIRoomScreenShare': 'Interrompi condivisione',
   'cancel': 'Annulla',
   'stop': 'Interrompi',
   'doNotOpen': 'Non aprire per ora',

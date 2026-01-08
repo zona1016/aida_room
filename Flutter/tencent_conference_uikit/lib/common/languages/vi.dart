@@ -80,7 +80,7 @@ const Map<String, String> roomContentsVi = {
   'screenSharingTip': 'Bạn đang chia sẻ màn hình...',
   'stopScreenShare': 'Dừng chia sẻ',
   'liveScreen': 'Màn hình trực tiếp',
-  'stopTUIRoomScreenShare': 'Dừng chia sẻ màn hình TUIRoom',
+  'stopTUIRoomScreenShare': 'Dừng chia sẻ màn hình',
   'cancel': 'Hủy',
   'stop': 'Dừng',
   'doNotOpen': 'Tạm không mở',

@@ -81,7 +81,7 @@ const Map<String, String> roomContentsEnUS = {
   'screenSharingTip': 'You are sharing your screen...',
   'stopScreenShare': 'Stop screen share',
   'liveScreen': 'Live screen',
-  'stopTUIRoomScreenShare': 'Stop TUIRoom screen sharing screen live broadcast',
+  'stopTUIRoomScreenShare': 'Stop screen sharing screen live broadcast',
   'cancel': 'Cancel',
   'stop': 'Stop',
   'doNotOpen': 'Not opened yet',

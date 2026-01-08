@@ -80,7 +80,7 @@ const Map<String, String> roomContentsMkMK = {
   'screenSharingTip': 'Вие го споделувате вашиот екран...',
   'stopScreenShare': 'Стопирај споделување',
   'liveScreen': 'Ливе екран',
-  'stopTUIRoomScreenShare': 'Стопирај TUIRoom споделување на екран',
+  'stopTUIRoomScreenShare': 'Стопирај споделување на екран',
   'cancel': 'Откажи',
   'stop': 'Стоп',
   'doNotOpen': 'Не отворај сега',

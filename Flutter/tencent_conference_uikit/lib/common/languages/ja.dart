@@ -80,7 +80,7 @@ const Map<String, String> roomContentsJaJP = {
   'screenSharingTip': '画面を共有中です…',
   'stopScreenShare': '画面共有停止',
   'liveScreen': 'ライブ画面',
-  'stopTUIRoomScreenShare': 'TUIRoom画面共有停止',
+  'stopTUIRoomScreenShare': '画面共有停止',
   'cancel': 'キャンセル',
   'stop': '停止',
   'doNotOpen': '今は開かない',

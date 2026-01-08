@@ -80,7 +80,7 @@ const Map<String, String> roomContentsHiIN = {
   'screenSharingTip': 'आप स्क्रीन साझा कर रहे हैं...',
   'stopScreenShare': 'साझा करना बंद करें',
   'liveScreen': 'लाइव स्क्रीन',
-  'stopTUIRoomScreenShare': 'TUIRoom स्क्रीन साझा करना बंद करें',
+  'stopTUIRoomScreenShare': 'स्क्रीन साझा करना बंद करें',
   'cancel': 'रद्द करें',
   'stop': 'रोकें',
   'doNotOpen': 'अभी न खोलें',

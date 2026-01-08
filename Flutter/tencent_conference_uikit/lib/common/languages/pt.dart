@@ -80,7 +80,7 @@ const Map<String, String> roomContentsPtPT = {
   'screenSharingTip': 'Você está compartilhando a tela...',
   'stopScreenShare': 'Parar Compartilhamento',
   'liveScreen': 'Transmissão da Tela',
-  'stopTUIRoomScreenShare': 'Parar transmissão TUIRoom',
+  'stopTUIRoomScreenShare': 'Parar transmissão',
   'cancel': 'Cancelar',
   'stop': 'Parar',
   'doNotOpen': 'Não Ativar',
