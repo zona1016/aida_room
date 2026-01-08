@@ -125,7 +125,7 @@ class BottomViewController extends GetxController {
     String appGroup = '';
     if (Platform.isIOS) {
       print('-----------------');
-      appGroup = 'group.com.aida';
+      appGroup = 'group.com.aidav2stream';
       ReplayKitLauncher.launchReplayKitBroadcast('AID2Group');
     }
     _engineManager.startScreenSharing(appGroup: appGroup);
