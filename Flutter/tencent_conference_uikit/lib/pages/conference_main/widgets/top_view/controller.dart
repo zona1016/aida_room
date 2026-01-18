@@ -76,7 +76,7 @@ class TopViewController extends GetxController with WidgetsBindingObserver {
 
   void updateTimer({required int totalSeconds}) {
 
-    if (totalSeconds < 0)
+    if (totalSeconds < 0) {
       timerText.value = '--:--';
       return;
     }
