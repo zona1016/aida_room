@@ -67,12 +67,31 @@ class TopViewController extends GetxController with WidgetsBindingObserver {
 
   void _updateFromStart(int start) {
     final int now = DateTime.now().millisecondsSinceEpoch;
-
     // ❗不要 abs
     final int totalSeconds = ((now - start) ~/ 1000).clamp(0, 1 << 31);
 
     updateTimer(totalSeconds: totalSeconds);
     needEdit();
+  }
+
+  void updateTimer({required int totalSeconds}) {
+
+    if (totalSeconds < 0)
+      timerText.value = '--:--';
+      return;
+    }
+
+    int second = totalSeconds % 60;
+    int minute = (totalSeconds ~/ 60) % 60;
+    int hour = totalSeconds ~/ 3600;
+
+    if (hour > 0) {
+      timerText.value =
+      "${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}:${second.toString().padLeft(2, '0')}";
+    } else {
+      timerText.value =
+      "${minute.toString().padLeft(2, '0')}:${second.toString().padLeft(2, '0')}";
+    }
   }
 
   void onAppPaused() {
@@ -99,7 +118,6 @@ class TopViewController extends GetxController with WidgetsBindingObserver {
     int currentTimeStamp = DateTime.now().millisecondsSinceEpoch;
     int totalSeconds =
         ((currentTimeStamp - (double.parse(startTime ?? '0').toInt())) / 1000)
-            .abs()
             .floor();
 
     updateTimer(totalSeconds: totalSeconds);
@@ -141,20 +159,6 @@ class TopViewController extends GetxController with WidgetsBindingObserver {
         },
         barrierDismissible: false,
       );
-    }
-  }
-
-  void updateTimer({required int totalSeconds}) {
-    int second = totalSeconds % 60;
-    int minute = (totalSeconds ~/ 60) % 60;
-    int hour = totalSeconds ~/ 3600;
-
-    if (hour > 0) {
-      timerText.value =
-          "${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}:${second.toString().padLeft(2, '0')}";
-    } else {
-      timerText.value =
-          "${minute.toString().padLeft(2, '0')}:${second.toString().padLeft(2, '0')}";
     }
   }
 
