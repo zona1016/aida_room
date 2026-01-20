@@ -20,6 +20,7 @@ dependencies:
   replay_kit_launcher: ^1.0.0
   tencent_float_chat_widget: ^1.0.6
   tencent_cloud_chat_sdk: ^8.5.6864+4
+  audioplayers: ^5.2.1
 
 dev_dependencies:
   flutter_test:

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:replay_kit_launcher/replay_kit_launcher.dart';
@@ -36,6 +37,8 @@ class BottomViewController extends GetxController {
 
   final conferenceMainController = Get.find<ConferenceMainController>();
 
+  final AudioPlayer _player = AudioPlayer();
+
   @override
   void onInit() {
     super.onInit();
@@ -62,6 +65,13 @@ class BottomViewController extends GetxController {
   void onClose() {
     _worker.dispose();
     super.onClose();
+  }
+
+  Future<void> play() async {
+    await _player.stop(); // 防止重复叠加
+    await _player.play(
+      AssetSource('assets/sound.wav'),
+    );
   }
 
   void muteAudioAction() {

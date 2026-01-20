@@ -51,6 +51,7 @@ class BottomButtonsWidget extends GetView<BottomViewController> {
               imageName: AssetsImages.roomUnMuteAudio,
             ),
             onPressed: () {
+              controller.play();
               controller.muteAudioAction();
             },
             isSelected: RoomStore.to.currentUser.hasAudioStream,
