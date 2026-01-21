@@ -29,7 +29,7 @@ class TUIRoomKitImpl implements TUIRoomKit {
     var result = await RoomEngineManager()
         .enterRoom(roomId, enableMic, enableCamera, isSoundOnSpeaker);
     if (result.code == TUIError.success) {
-      Get.to(const ConferenceMainPage());
+      Get.to( ConferenceMainPage());
     }
     return result;
   }

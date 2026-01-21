@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tencent_conference_uikit/common/index.dart';
 import 'package:tencent_conference_uikit/common/store/float_window_store.dart';
+import 'package:tencent_conference_uikit/pages/conference_main/float_window_data.dart';
 import 'package:tencent_conference_uikit/pages/conference_main/view.dart';
 
 class FloatWindowController extends GetxController
@@ -86,10 +87,10 @@ class FloatWindowController extends GetxController
   }
 
   void onTap() {
-    String? roomLink = FloatWindowStore.to.roomLink;
-    String? endTime = FloatWindowStore.to.endTime;
-    String? startTime = FloatWindowStore.to.startTime;
-    Widget? chat = FloatWindowStore.to.chat;
+    String? roomLink = FloatWindowData.instance.roomLink;
+    String? endTime = FloatWindowData.instance.endTime;
+    String? startTime = FloatWindowData.instance.startTime;
+    Widget? chat = FloatWindowData.instance.chat;
     onFloatWindowTap?.call();
     Get.to(ConferenceMainPage(
       endTime: endTime,

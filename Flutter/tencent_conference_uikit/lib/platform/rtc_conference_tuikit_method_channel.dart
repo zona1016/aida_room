@@ -64,6 +64,6 @@ class MethodChannelRtcConferenceTuikit extends RtcConferenceTuikitPlatform {
 
   void onFloatWindowClicked() {
     FloatWindowStore.to.onFloatWindowClose();
-    Get.to(() => const ConferenceMainPage());
+    Get.to(() => ConferenceMainPage());
   }
 }

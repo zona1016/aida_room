@@ -12,11 +12,6 @@ import '../models/user.dart';
 
 class FloatWindowStore extends GetxController {
 
-  late String? roomLink;
-  late Widget? chat;
-  late String? endTime;
-  late String? startTime;
-
   static FloatWindowStore get to => Get.find();
 
   final UserModel _previousFloatWindowUserModel = UserModel();

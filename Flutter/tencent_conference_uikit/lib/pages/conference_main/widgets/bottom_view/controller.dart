@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:replay_kit_launcher/replay_kit_launcher.dart';
 import 'package:tencent_conference_uikit/common/index.dart';
 import 'package:tencent_conference_uikit/manager/rtc_engine_manager.dart';
+import 'package:tencent_conference_uikit/pages/conference_main/float_window_data.dart';
 import 'package:tencent_conference_uikit/pages/conference_main/index.dart';
 import 'package:rtc_room_engine/api/room/tui_room_define.dart';
 import 'package:tencent_conference_uikit/pages/conference_main/widgets/float_window/index.dart';
@@ -275,11 +276,11 @@ class BottomViewController extends GetxController {
   }
 
   Future<void> enableFloatWindow() async {
+    FloatWindowData.instance.roomLink = roomLink;
+    FloatWindowData.instance.startTime = startTime;
+    FloatWindowData.instance.endTime = endTime;
+    FloatWindowData.instance.chat = chat;
     Get.put<FloatWindowStore>(FloatWindowStore(), permanent: true);
-    FloatWindowStore.to.endTime = endTime;
-    FloatWindowStore.to.chat = chat;
-    FloatWindowStore.to.roomLink = roomLink;
-    FloatWindowStore.to.startTime = startTime;
     bool success = await FloatWindowStore.to.showFloatWindow();
     if (success) {
       Get.back();

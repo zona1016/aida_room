@@ -1,9 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:tencent_conference_uikit/common/index.dart';
 import 'package:tencent_conference_uikit/common/room_base_screen.dart';
+import 'package:tencent_conference_uikit/common/store/float_window_store.dart';
 import 'package:tencent_conference_uikit/conference/conference_params.dart';
 import 'package:tencent_conference_uikit/conference/conference_observer.dart';
+import 'package:tencent_conference_uikit/pages/conference_main/float_window_data.dart';
 import 'package:tencent_conference_uikit/pages/conference_main/widgets/bottom_view/widgets/widgets.dart';
 import 'package:tencent_conference_uikit/pages/conference_main/widgets/widgets.dart';
 import 'package:tencent_float_chat_widget/tencent_float_chat_widget.dart';
@@ -11,7 +15,7 @@ import 'package:tencent_float_chat_widget/tencent_float_chat_widget.dart';
 import 'index.dart';
 
 class ConferenceMainPage extends GetView<ConferenceMainController> {
-  const ConferenceMainPage(
+   ConferenceMainPage(
       {this.conferenceId,
       this.isCreateConference,
       this.conferenceParams,
@@ -25,16 +29,16 @@ class ConferenceMainPage extends GetView<ConferenceMainController> {
       : super(key: key);
 
   /// 会议密码
-  final String? pwd;
+  String? pwd;
 
   /// 会议链接
-  final String? roomLink;
+  String? roomLink;
 
   /// 结束时间
-  final String? endTime;
+  String? endTime;
 
   /// 开始时间
-  final String? startTime;
+  String? startTime;
 
   /// The Id of the conference to be created or joined.
   ///
@@ -89,9 +93,10 @@ class ConferenceMainPage extends GetView<ConferenceMainController> {
   /// To use this feature, you need to add the `tencent_cloud_chat_message` plugin dependency to your project's `pubspec.yaml` file.
   /// Make sure to initialize and configure the chat component properly before using it in the conference page.
   /// For detailed usage, please refer to the documentation at [In-Conference Chat](https://example.com) or the example project.
-  final Widget? chatWidget;
+   Widget? chatWidget;
 
   Widget _buildView(Orientation orientation) {
+    // 获取当前会议Android的数据
     return GestureDetector(
       onTap: () {
         controller.onMainViewClick();
@@ -202,6 +207,12 @@ class ConferenceMainPage extends GetView<ConferenceMainController> {
 
   @override
   Widget build(BuildContext context) {
+    if (Platform.isAndroid && roomLink == null && FloatWindowData.instance.roomLink != null) {
+      roomLink = FloatWindowData.instance.roomLink;
+      endTime = FloatWindowData.instance.endTime;
+      startTime = FloatWindowData.instance.startTime;
+      chatWidget = FloatWindowData.instance.chat;
+    }
     return GetBuilder<ConferenceMainController>(
       init: ConferenceMainController(
         conferenceId: conferenceId,
