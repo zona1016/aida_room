@@ -342,6 +342,10 @@ class UserListController extends GetxController {
     return userModel.userRole.value == TUIRole.administrator;
   }
 
+  bool judgeIsAdministrator() {
+    return RoomStore.to.currentUser.userRole.value == TUIRole.administrator;
+  }
+
   double getUserControlWidgetHeight(UserModel userModel) {
     if (isSelf(userModel)) {
       return 230.0.scale375();
@@ -354,6 +358,14 @@ class UserListController extends GetxController {
         return 385.0.scale375();
       }
       return 435.0.scale375();
+    } else if (judgeIsAdministrator()) {
+      if (isRoomNeedTakeSeat()) {
+        if (userModel.isOnSeat.value) {
+          return 360.0.scale375();
+        }
+        return 260.0.scale375();
+      }
+      return 310.0.scale375();
     } else {
       if (isRoomNeedTakeSeat()) {
         if (userModel.isOnSeat.value) {

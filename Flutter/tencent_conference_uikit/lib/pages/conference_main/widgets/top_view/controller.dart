@@ -163,10 +163,9 @@ class TopViewController extends GetxController with WidgetsBindingObserver {
   }
 
   void switchSpeakerAction() {
-    RoomStore.to.audioSetting.isSoundOnSpeaker.value =
-        !RoomStore.to.audioSetting.isSoundOnSpeaker.value;
+
     _engineManager
-        .setAudioRoute(RoomStore.to.audioSetting.isSoundOnSpeaker.value);
+        .setAudioRoute(!RoomStore.to.audioSetting.isSoundOnSpeaker.value);
   }
 
   void switchCameraAction() {

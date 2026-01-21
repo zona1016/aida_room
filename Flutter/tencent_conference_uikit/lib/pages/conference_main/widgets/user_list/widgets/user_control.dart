@@ -176,7 +176,7 @@ class UserControlWidget extends GetView<UserListController> {
                 ),
                 Visibility(
                   visible:
-                      controller.isOwner() && !controller.isSelf(userModel),
+                  (controller.isOwner() || controller.judgeIsAdministrator()) && !controller.isSelf(userModel),
                   child: UserControlItemWidget(
                     onPressed: () {
                       Get.back();

@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:tencent_conference_uikit/common/index.dart';
 import 'package:tencent_conference_uikit/event/room_event_handler.dart';
+import 'package:tencent_conference_uikit/pages/conference_main/widgets/top_view/audio_route_helper.dart';
 import 'package:tencent_conference_uikit/platform/rtc_conference_tuikit_platform_interface.dart';
 import 'package:rtc_room_engine/rtc_room_engine.dart';
 import 'package:tencent_trtc_cloud/trtc_cloud.dart';
@@ -218,10 +219,28 @@ class RoomEngineManager {
   }
 
   void setAudioRoute(bool isSoundOnSpeaker) {
-    RoomStore.to.audioSetting.isSoundOnSpeaker.value = isSoundOnSpeaker;
+
     TUIAudioRoute route =
         isSoundOnSpeaker ? TUIAudioRoute.speakerphone : TUIAudioRoute.earpiece;
-    return _roomEngine.getMediaDeviceManager().setAudioRoute(route);
+
+    _roomEngine.getMediaDeviceManager().setAudioRoute(route);
+
+    if (GetPlatform.isAndroid) {
+      Future.delayed(const Duration(milliseconds: 200), () {
+        syncRealAudioRoute();
+      });
+    } else {
+      RoomStore.to.audioSetting.isSoundOnSpeaker.value = isSoundOnSpeaker;
+    }
+  }
+
+  Future<void> syncRealAudioRoute() async {
+
+    final bool realSpeakerOn =
+    await AudioRouteHelper.isSpeakerOn();
+
+    RoomStore.to.audioSetting.isSoundOnSpeaker.value =
+        realSpeakerOn;
   }
 
   Future<TUIActionCallback> muteAllAudioAction(bool isMute) async {
