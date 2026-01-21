@@ -70,7 +70,7 @@ class BottomViewController extends GetxController {
   Future<void> play() async {
     await _player.stop(); // 防止重复叠加
     await _player.play(
-      AssetSource('assets/sound.wav'),
+      AssetSource('sound.wav'),
     );
   }
 
