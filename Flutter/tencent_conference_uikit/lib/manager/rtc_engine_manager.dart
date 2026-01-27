@@ -96,6 +96,7 @@ class RoomEngineManager {
       RoomStore.to.roomUserCount.value = result.data!.memberCount;
       await RoomStore.to.initialCurrentUser();
       // RoomStore.to.startPeriodicSync();
+      await _getUserList();
       await _getSeatedUserList();
       bool isTakeSeatSuccess = await _autoTakeSeatForOwner();
       if (!isTakeSeatSuccess) {
