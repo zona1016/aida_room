@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:get/get.dart';
 import 'package:tencent_conference_uikit/manager/rtc_engine_manager.dart';
 import 'package:tencent_conference_uikit/common/index.dart';
@@ -26,7 +27,146 @@ class RoomStore {
   RxBool isMicItemTouchable = true.obs;
   RxBool isCameraItemTouchable = true.obs;
 
+  // ========== 同步相关 ==========
+  Timer? _syncTimer;
+  static const int _syncIntervalSeconds = 300;
+  bool _isSyncing = false;
+
+  /// 启动定期同步
+  void startPeriodicSync() {
+    // 立即同步一次
+    syncAllUsersFromServer();
+
+    // 定期同步
+    _syncTimer?.cancel();
+    _syncTimer = Timer.periodic(
+      const Duration(seconds: _syncIntervalSeconds),
+          (_) => syncAllUsersFromServer(),
+    );
+  }
+
+  /// 停止定期同步
+  void stopPeriodicSync() {
+    _syncTimer?.cancel();
+    _syncTimer = null;
+  }
+
+  /// 从服务端全量同步用户列表
+  Future<void> syncAllUsersFromServer() async {
+    print('sdfsdfsdfdsfdsfsdfdsf');
+    if (_isSyncing) return;
+    _isSyncing = true;
+
+    try {
+      List<TUIUserInfo> serverUsers = await _fetchAllUsersFromServer();
+      if (serverUsers.isNotEmpty) {
+        _mergeUserList(serverUsers);
+        roomUserCount.value = serverUsers.length;
+      }
+    } catch (e) {
+      print('syncAllUsersFromServer error: $e');
+    } finally {
+      _isSyncing = false;
+    }
+  }
+
+  /// 分页拉取所有用户
+  /// 分页拉取所有用户（递归方式）
+  Future<List<TUIUserInfo>> _fetchAllUsersFromServer([int nextSequence = 0]) async {
+    List<TUIUserInfo> allUsers = [];
+
+    var result =
+    await RoomEngineManager().getRoomEngine().getUserList(nextSequence);
+
+    if (result.code != TUIError.success || result.data == null) {
+      return allUsers;
+    }
+
+    allUsers.addAll(result.data!.userInfoList);
+
+    // 如果还有下一页，递归获取并合并结果
+    if (result.data!.nextSequence != 0) {
+      List<TUIUserInfo> nextPageUsers =
+      await _fetchAllUsersFromServer(result.data!.nextSequence);
+      allUsers.addAll(nextPageUsers);
+    }
+
+    return allUsers;
+  }
+
+  /// 合并服务端列表到本地
+  void _mergeUserList(List<TUIUserInfo> serverUsers) {
+    Set<String> serverUserIds = serverUsers.map((u) => u.userId).toSet();
+    Set<String> localUserIds =
+    userInfoList.map((u) => u.userId.value).toSet();
+
+    // 1. 删除本地有但服务端没有的用户
+    List<String> usersToRemove =
+    localUserIds.difference(serverUserIds).toList();
+    for (var userId in usersToRemove) {
+      removeUser(userId, userInfoList);
+      removeUser(userId, seatedUserList);
+    }
+
+    // 2. 添加或更新用户
+    for (var serverUser in serverUsers) {
+      int index = getUserIndex(serverUser.userId, userInfoList);
+      if (index == -1) {
+        // 新用户，添加
+        _addUserInternal(serverUser, userInfoList);
+      } else {
+        // 已存在，更新状态
+        _updateExistingUser(serverUser, userInfoList[index]);
+      }
+    }
+
+    // 3. 统一排序
+    _sortUserList(userInfoList);
+  }
+
+  /// 更新已存在用户的状态
+  void _updateExistingUser(TUIUserInfo serverUser, UserModel localUser) {
+    localUser.userName.value = serverUser.userName;
+    localUser.userAvatarURL.value = serverUser.avatarUrl;
+    localUser.userRole.value = serverUser.userRole;
+    localUser.hasVideoStream.value = serverUser.hasVideoStream!;
+    localUser.hasAudioStream.value = serverUser.hasAudioStream!;
+    localUser.hasScreenStream.value = serverUser.hasScreenStream!;
+
+    if (serverUser.hasScreenStream == true) {
+      isSharing.value = true;
+      screenShareUser = UserModel.fromTUIUserInfo(serverUser);
+    }
+  }
+
+  /// 内部添加用户（不排序）
+  void _addUserInternal(TUIUserInfo userInfo, RxList<UserModel> destList) {
+    if (userInfo.hasScreenStream == true) {
+      isSharing.value = true;
+      screenShareUser = UserModel.fromTUIUserInfo(userInfo);
+    }
+    destList.add(UserModel.fromTUIUserInfo(userInfo));
+  }
+
+  /// 统一排序规则
+  void _sortUserList(RxList<UserModel> list) {
+    list.sort((a, b) {
+      // 1. 房主最前
+      if (a.userRole.value == TUIRole.roomOwner) return -1;
+      if (b.userRole.value == TUIRole.roomOwner) return 1;
+      // 2. 管理员其次
+      if (a.userRole.value == TUIRole.administrator &&
+          b.userRole.value != TUIRole.administrator) return -1;
+      if (b.userRole.value == TUIRole.administrator &&
+          a.userRole.value != TUIRole.administrator) return 1;
+      // 3. 按 userId 字母顺序（保证所有客户端一致）
+      return a.userId.value.compareTo(b.userId.value);
+    });
+  }
+
   void clearStore() {
+    stopPeriodicSync();
+
     screenShareUser = UserModel();
     userInfoList.clear();
     isSharing.value = false;
@@ -60,7 +200,7 @@ class RoomStore {
   Future<void> initialCurrentUser() async {
     TUILoginUserInfo loginUserInfo = TUIRoomEngine.getSelfInfo();
     var getCurrentUserResult =
-        await RoomEngineManager().getUserInfo(loginUserInfo.userId);
+    await RoomEngineManager().getUserInfo(loginUserInfo.userId);
     currentUser.userName.value = getCurrentUserResult.data!.userName;
     currentUser.userId.value = getCurrentUserResult.data!.userId;
     currentUser.userRole.value = getCurrentUserResult.data!.userRole;
@@ -83,11 +223,8 @@ class RoomStore {
       isSharing.value = true;
       screenShareUser = UserModel.fromTUIUserInfo(userInfo);
     }
-    if (userInfo.userRole == TUIRole.roomOwner) {
-      destList.insert(0, UserModel.fromTUIUserInfo(userInfo));
-    } else {
-      destList.add(UserModel.fromTUIUserInfo(userInfo));
-    }
+    destList.add(UserModel.fromTUIUserInfo(userInfo));
+    _sortUserList(destList);
   }
 
   UserModel? getUserById(String userId) {
@@ -169,6 +306,7 @@ class RoomStore {
       return;
     }
     destList[index].userRole.value = role;
+    _sortUserList(destList);
   }
 
   void updateSelfRole(TUIRole role) {
@@ -257,8 +395,8 @@ class RoomStore {
     String userId = inviteSeatMap.entries
         .firstWhere(
           (entry) => entry.value == requestId,
-          orElse: () => const MapEntry('', ''),
-        )
+      orElse: () => const MapEntry('', ''),
+    )
         .key;
     if (userId.isNotEmpty) {
       deleteInviteSeatUser(userId);

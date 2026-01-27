@@ -95,7 +95,7 @@ class RoomEngineManager {
       RoomStore.to.timeStampOnEnterRoom = DateTime.now().millisecondsSinceEpoch;
       RoomStore.to.roomUserCount.value = result.data!.memberCount;
       await RoomStore.to.initialCurrentUser();
-      await _getUserList();
+      RoomStore.to.startPeriodicSync();
       await _getSeatedUserList();
       bool isTakeSeatSuccess = await _autoTakeSeatForOwner();
       if (!isTakeSeatSuccess) {
@@ -107,6 +107,7 @@ class RoomEngineManager {
         getSeatApplicationList();
       }
       if (GetPlatform.isAndroid) {
+        await AudioRouteHelper.enableRtcAudio();
         RtcConferenceTuikitPlatform.instance.startForegroundService();
       }
     }
@@ -288,6 +289,7 @@ class RoomEngineManager {
   Future<TUIActionCallback> exitRoom() async {
     if (GetPlatform.isAndroid) {
       RtcConferenceTuikitPlatform.instance.stopForegroundService();
+      AudioRouteHelper.disableRtcAudio();
     }
     RoomStore.to.clearStore();
     return _roomEngine.exitRoom(false);
@@ -296,6 +298,7 @@ class RoomEngineManager {
   Future<TUIActionCallback> destroyRoom() {
     if (GetPlatform.isAndroid) {
       RtcConferenceTuikitPlatform.instance.stopForegroundService();
+      AudioRouteHelper.disableRtcAudio();
     }
     RoomStore.to.clearStore();
     return _roomEngine.destroyRoom();
